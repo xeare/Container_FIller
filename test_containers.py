@@ -21,7 +21,8 @@ class TestContainers(TestCase):
         sut = ContainerFiller()
         containers = sut.calculate(teaspoons=1)
         expect(containers).to(equal(
-            tuple(('teaspoons', 1))
+            (
+                ('teaspoons', 1))
         ))
 
     @skip('')
