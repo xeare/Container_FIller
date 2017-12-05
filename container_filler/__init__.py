@@ -4,13 +4,16 @@ TEASPOONS_PER_TABLESPOON = 3
 
 class ContainerFiller:
 
-    @staticmethod
-    def calculate(teaspoons):
-        filled_pints = int(teaspoons / TEASPOONS_PER_PINT)
-        teaspoons_remaining = teaspoons % TEASPOONS_PER_PINT
-        filled_tablespoons = int(
-            teaspoons_remaining / TEASPOONS_PER_TABLESPOON)
-        teaspoons_remaining = teaspoons_remaining % TEASPOONS_PER_TABLESPOON
+    def _div_and_mod(self, teaspoons, conversion):
+        filled = int(teaspoons / conversion)
+        teaspoons_remaining = teaspoons % conversion
+        return filled, teaspoons_remaining
+
+    def calculate(self, teaspoons):
+        filled_pints, teaspoons_remaining = self._div_and_mod(
+            teaspoons, TEASPOONS_PER_PINT)
+        filled_tablespoons, teaspoons_remaining = self._div_and_mod(
+            teaspoons_remaining, TEASPOONS_PER_TABLESPOON)
         return (
             ('pints', filled_pints),
             ('tablespoons', filled_tablespoons),
