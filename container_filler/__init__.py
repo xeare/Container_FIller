@@ -14,7 +14,10 @@ class ContainerFiller:
             teaspoons, TEASPOONS_PER_PINT)
         filled_tablespoons, teaspoons_remaining = self._div_and_mod(
             teaspoons_remaining, TEASPOONS_PER_TABLESPOON)
-        return (
-            ('pints', filled_pints),
-            ('tablespoons', filled_tablespoons),
-            ('teaspoons', teaspoons_remaining))
+        if filled_pints == 0 and filled_tablespoons == 0:
+            return ('teaspoons', teaspoons_remaining)
+        else:
+            return (
+                ('pints', filled_pints),
+                ('tablespoons', filled_tablespoons),
+                ('teaspoons', teaspoons_remaining))
