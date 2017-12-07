@@ -7,7 +7,7 @@ from container_filler import ContainerFiller
 
 class TestContainers(TestCase):
 
-    @skip('')
+    # @skip('')
     def test_leaves_no_air(self):
         # sut = system under test, in this case the containers
         sut = ContainerFiller()
@@ -26,16 +26,16 @@ class TestContainers(TestCase):
             ('not sure what to expect')))
 
     # @skip('')
-    def a_thousand_teaspoons(self):
+    def ten_thousand_teaspoons(self):
         sut = ContainerFiller()
-        containers = sut.calculate(teaspoons=1000)
+        containers = sut.calculate(teaspoons=10000)
         expect(containers).to(equal(
             (
-                ('pints', 100),
-                ('tablespoons', 10)
-                ('teaspoons', 1))))
+                ('pints', 96),
+                ('tablespoons', 8)
+                ('teaspoons', 2))))
 
-    @skip('')
+    # @skip('')
     def test_one_teaspoon(self):
         sut = ContainerFiller()
         containers = sut.calculate(teaspoons=1)
