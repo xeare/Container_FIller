@@ -18,21 +18,21 @@ class TestContainers(TestCase):
                 ('tablespoons', 1),
                 ('teaspoons', 1))))
 
-    @skip('')
+    # @skip('')
     def test_with_random_strings(self):
         sut = ContainerFiller()
-        containers = sut.calculate(teaspoons='aardvark')
+        containers = sut.calculate(teaspoons=('aardvark'))
         expect(containers).to(equal(
             ('not sure what to expect')))
 
     # @skip('')
-    def ten_thousand_teaspoons(self):
+    def test_ten_thousand_teaspoons(self):
         sut = ContainerFiller()
         containers = sut.calculate(teaspoons=10000)
         expect(containers).to(equal(
             (
                 ('pints', 104),
-                ('tablespoons', 5)
+                ('tablespoons', 5),
                 ('teaspoons', 1))))
 
     # @skip('')
