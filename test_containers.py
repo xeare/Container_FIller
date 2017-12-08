@@ -7,6 +7,7 @@ from container_filler import ContainerFiller
 
 class TestContainers(TestCase):
 
+    # @skip('')
     def test_leaves_no_air(self):
         # sut = system under test, in this case the containers
         sut = ContainerFiller()
@@ -17,6 +18,24 @@ class TestContainers(TestCase):
                 ('tablespoons', 1),
                 ('teaspoons', 1))))
 
+    @skip('')
+    def test_with_random_strings(self):
+        sut = ContainerFiller()
+        containers = sut.calculate(teaspoons='aardvark')
+        expect(containers).to(equal(
+            ('not sure what to expect')))
+
+    # @skip('')
+    def ten_thousand_teaspoons(self):
+        sut = ContainerFiller()
+        containers = sut.calculate(teaspoons=10000)
+        expect(containers).to(equal(
+            (
+                ('pints', 104),
+                ('tablespoons', 5)
+                ('teaspoons', 1))))
+
+    # @skip('')
     def test_one_teaspoon(self):
         sut = ContainerFiller()
         containers = sut.calculate(teaspoons=1)
