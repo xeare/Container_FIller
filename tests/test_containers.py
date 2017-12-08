@@ -31,9 +31,9 @@ class TestContainers(TestCase):
         containers = sut.calculate(teaspoons=10000)
         expect(containers).to(equal(
             (
-                ('pints', 96),
-                ('tablespoons', 8)
-                ('teaspoons', 2))))
+                ('pints', 104),
+                ('tablespoons', 5)
+                ('teaspoons', 1))))
 
     # @skip('')
     def test_one_teaspoon(self):

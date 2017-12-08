@@ -3,7 +3,7 @@ TEASPOONS_PER_TABLESPOON = 3
 
 
 class ContainerFiller:
-
+    # below function is us in the next one so start with the next one
     def _div_and_mod(self, teaspoons, conversion):
         filled = int(teaspoons / conversion)
         teaspoons_remaining = teaspoons % conversion
@@ -14,7 +14,7 @@ class ContainerFiller:
             teaspoons, TEASPOONS_PER_PINT)
         filled_tablespoons, teaspoons_remaining = self._div_and_mod(
             teaspoons_remaining, TEASPOONS_PER_TABLESPOON)
-        if filled_pints == 0 and filled_tablespoons == 0:
+        if filled_pints == 0 or filled_tablespoons == 0:
             return ('teaspoons', teaspoons_remaining)
         else:
             return (
