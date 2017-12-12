@@ -9,12 +9,15 @@ class ContainerFiller:
         teaspoons_remaining = teaspoons % conversion
         return filled, teaspoons_remaining
 
+    def _only_return_non_zero_values(self, teaspoons):
+        return 0
+
     def calculate(self, teaspoons):
         filled_pints, teaspoons_remaining = self._div_and_mod(
             teaspoons, TEASPOONS_PER_PINT)
         filled_tablespoons, teaspoons_remaining = self._div_and_mod(
             teaspoons_remaining, TEASPOONS_PER_TABLESPOON)
-        if filled_pints == 0 or filled_tablespoons == 0:
+        if filled_pints == 0 and filled_tablespoons == 0:
             return ('teaspoons', teaspoons_remaining)
         else:
             return (
