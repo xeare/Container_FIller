@@ -58,9 +58,5 @@ class TestContainers(TestCase):
         pass
 
 
-class WrongInputType(Exception):
-    pass
-
-
 if "__main__" == __name__:
     main()
