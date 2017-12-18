@@ -14,16 +14,23 @@ class TestContainers(TestCase):
         containers = sut.calculate(teaspoons=100)
         expect(containers).to(equal(
             (
-                ('pints', 1),
-                ('tablespoons', 1),
-                ('teaspoons', 1))))
+                [('pints', 1),
+                    ('tablespoons', 1),
+                    ('teaspoons', 1)])))
+
+    # @skip('')
+    def test_string_as_input(self):
+        sut = ContainerFiller()
+        try:
+            sut.calculate(teaspoons=('aardvark'))
+            assert False, 'No exception was raised'
+        except TypeError:
+            print('Please give a number')
 
     @skip('')
-    def test_with_random_strings(self):
-        sut = ContainerFiller()
-        containers = sut.calculate(teaspoons=('aardvark'))
-        expect(containers).to(equal(
-            ('not sure what to expect')))
+    def test_exception_error_text(self):
+        #   except WrongInputType as e:
+            expect(str(e)).to(equal('Please give a number'))
 
     # @skip('')
     def test_ten_thousand_teaspoons(self):
@@ -31,9 +38,9 @@ class TestContainers(TestCase):
         containers = sut.calculate(teaspoons=10000)
         expect(containers).to(equal(
             (
-                ('pints', 104),
-                ('tablespoons', 5),
-                ('teaspoons', 1))))
+                [('pints', 104),
+                    ('tablespoons', 5),
+                    ('teaspoons', 1)])))
 
     # @skip('')
     def test_one_teaspoon(self):
@@ -41,7 +48,7 @@ class TestContainers(TestCase):
         containers = sut.calculate(teaspoons=1)
         expect(containers).to(equal(
             (
-                ('teaspoons', 1))
+                [('teaspoons', 1)])
         ))
 
     @skip('')
