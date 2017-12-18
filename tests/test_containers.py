@@ -1,6 +1,6 @@
 from unittest import TestCase, main, skip
 
-from expects import expect, equal
+from expects import expect, equal, raise_error
 
 from container_filler import ContainerFiller, WrongInputType
 
@@ -21,27 +21,25 @@ class TestContainers(TestCase):
     # @skip('')
     def test_raises_wrong_input_type_on_str(self):
         sut = ContainerFiller()
-        try:
+
+        def attempt():
             sut.calculate(teaspoons=('aardvark'))
-            assert False, 'No exception was raised'
-        except WrongInputType:
-            pass
+        expect(attempt).to(raise_error(WrongInputType))
 
     # @skip('')
     def test_exception_msg_on_str(self):
         sut = ContainerFiller()
-        try:
+
+        def attempt():
             sut.calculate(teaspoons=('aardvark'))
-        except WrongInputType as e:
-            expect(str(e)).to(equal('Please give a number'))
+        expect(attempt).to(raise_error(Exception, 'Please give a number'))
 
     def test_raises_wrong_input_type_on_dict(self):
         sut = ContainerFiller()
-        try:
+
+        def attempt():
             sut.calculate(teaspoons=({'spam': 42, 'eggs': 'ximinez'}))
-            assert False, 'No exception was raised'
-        except WrongInputType:
-            pass
+        expect(attempt).to(raise_error(WrongInputType))
 
     # @skip('')
     def test_ten_thousand_teaspoons(self):
@@ -61,10 +59,6 @@ class TestContainers(TestCase):
             (
                 [('teaspoons', 1)])
         ))
-
-    @skip('')
-    def test_contains_all_water(self):
-        pass
 
 
 if "__main__" == __name__:
