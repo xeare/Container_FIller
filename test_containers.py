@@ -22,7 +22,7 @@ class TestContainers(TestCase):
     def test_string_as_input(self):
         sut = ContainerFiller()
         try:
-            sut.calculate(teaspoons=(0.1))
+            sut.calculate(teaspoons=('aardvark'))
             assert False, 'No exception was raised'
         except TypeError:
             pass
