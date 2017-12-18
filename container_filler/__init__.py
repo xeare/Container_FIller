@@ -18,9 +18,8 @@ class ContainerFiller:
 
     def calculate(self, teaspoons):
 
-        if isinstance(teaspoons, str):
-            raise WrongInputType
-            print("Please enter a number")
+        if not isinstance(teaspoons, int):
+            raise WrongInputType("Please give a number")
 
         filled_pints, teaspoons_remaining = self._div_and_mod(
             teaspoons, TEASPOONS_PER_PINT)
