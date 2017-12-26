@@ -26,6 +26,4 @@ class ContainerFiller:
             teaspoons = teaspoons_remaining
             if filled:
                 end_result.append(filled)
-            else:
-                ignore
             return end_result
