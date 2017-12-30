@@ -15,15 +15,14 @@ class WrongInputType(Exception):
 
 class ContainerFiller:
     def calculate(self, teaspoons):
-
+        end_result = []
         if not isinstance(teaspoons, int):
             raise WrongInputType("Please give a number")
 
         for value, unit in conversion:
-            end_result = [unit]
             filled = int(teaspoons/value)
             teaspoons_remaining = teaspoons % value
             teaspoons = teaspoons_remaining
             if filled:
-                end_result.append(filled)
-            return end_result
+                end_result = end_result + [(unit,filled)]
+        return end_result
