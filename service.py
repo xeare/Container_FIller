@@ -12,3 +12,8 @@ def form():
 @app.route('/submit', methods=['POST'])
 def submit():
     return str(ContainerFiller().calculate(int(request.form['teaspoons'])))
+
+@app.route('/submit')
+def submit_display():
+    if end_result == [('barrels', 1)]:
+        return render_template('index.html')
