@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>gallons</title>
+  </head>
+  <!-- currently not displaying the jinja code because of possibly something
+  called 'html escaping.' -->
+  <body>
+    <style>
+    <div> {
+
+      {% for a, b in result: %}
+        {% if a, b == [('gallons', 1)] %}
+        background-color: red;
+        {% endif %}
+    {% endfor %}
+
+}
+</div>
+    </style>
+  </body>
+</html>
