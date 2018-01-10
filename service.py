@@ -15,8 +15,10 @@ def form():
 def submit():
     result = str(
         ContainerFiller().calculate(int(request.form['teaspoons'])))
-    return render_template('gallon.html', value=result)
+    return render_template('gallons.html', value=result)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# FLASK_APP=service.py python3 -m flask run
