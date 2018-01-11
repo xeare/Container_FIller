@@ -20,6 +20,7 @@ def submit():
         ContainerFiller().calculate(int(request.form['teaspoons'])))
     return render_template('gallons.html', value=result)
 
+
 if __name__ == '__main__':
     app.run(debug=True)
 

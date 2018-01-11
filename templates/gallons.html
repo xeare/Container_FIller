@@ -1,20 +1,37 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bellefair">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <html>
   <head>
+    <link rel="icon" type="image/png" href="/static/favicon.ico">
+ <!--supposed to stop the favicon 404 error-->
     <title> gallons</title>
-  </head>
-  <body>
+  <!--  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+-->  </head>
+<style>
+ul{padding:2%; }
+</style>
+  <body style="background-color:#429993">
+      {% for _ in value: %}
+          {% if "[('pints', 1), ('tablespoons', 1), ('teaspoons', 1)]"
+                 in value: %}
+            <ul style="margin:25%"><li style="color:white">
+              {{ value }} </li></ul>
+                {% break %}
 
+          {% elif "[('gallons', 13), ('fluid ounces', 2), ('tablespoons', 1), ('teaspoons', 1)]"
+                   in value: %}
+           <ul style="margin:25%">  <li style="background-color:red">{{ value }} </li></ul>
+                   {% break %}
 
-
-       {% for a in value: %}
-          {% if a != None %}
-            {{ value }}
+          {% elif "[('teaspoons', 1)]"
+            in value: %}
+            <ul style="margin:25%">  <li style="color:#ab1323">{{ value }} </li></ul>
+            {% break %}
+          {% else:%}
+              <ul style="margin:25%"> <li style="color:white">{{ value }}</li></ul>
+              {% break %}
           {% endif %}
-        {% endfor %}
-
-
-
+      {% endfor %}
   </body>
 </html>
-<!--[('gallons', 1)] -->
