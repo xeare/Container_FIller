@@ -8,28 +8,35 @@
     <title> gallons</title>
   <!--  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 -->  </head>
+
 <style>
+
 ul{padding:2%; }
+#hundred {margin:25%; background:white;color:black;}
+#tenthousand {margin:25%; background:black; color:white;}
+#one {margin:25%; background:blue; color:#ab1323;}
+#everythingelse {margin:5%; background: white;}
+
 </style>
+
   <body style="background-color:#429993">
       {% for _ in value: %}
           {% if "[('pints', 1), ('tablespoons', 1), ('teaspoons', 1)]"
                  in value: %}
-            <ul style="margin:25%"><li style="color:white">
-              {{ value }} </li></ul>
+            <ul id="hundred"> <li> {{ value }} </li> </ul>
                 {% break %}
 
           {% elif "[('gallons', 13), ('fluid ounces', 2), ('tablespoons', 1), ('teaspoons', 1)]"
                    in value: %}
-           <ul style="margin:25%">  <li style="background-color:red">{{ value }} </li></ul>
+           <ul id="tenthousand">  <li> {{ value }} </li></ul>
                    {% break %}
 
           {% elif "[('teaspoons', 1)]"
             in value: %}
-            <ul style="margin:25%">  <li style="color:#ab1323">{{ value }} </li></ul>
+            <ul id="one" >  <li> {{ value }} </li></ul>
             {% break %}
           {% else:%}
-              <ul style="margin:25%"> <li style="color:white">{{ value }}</li></ul>
+              <h1><ul id="everythingelse"> <li> {{ value }} </li></ul></h1>
               {% break %}
           {% endif %}
       {% endfor %}
