@@ -2,9 +2,7 @@ import time
 
 from selenium import webdriver
 
-
-class StaleElementReferenceException(Exception):
-    pass
+from expects import expect, equal
 
 
 class TestServiceApp(object):
@@ -16,25 +14,22 @@ class TestServiceApp(object):
     def lookup(driver):
         # find input area
         driver.get("http://127.0.0.1:5000")
+        time.sleep(1)
         search_box = driver.find_element_by_name('teaspoons')
         search_box.clear()  # make sure input area is empty
+        search_box.send_keys('1')  # type in 1
+        time.sleep(1)
+        search_box.submit()
+        time.sleep(3)
+        expected_result = driver.find_element_by_id('one')
+        expect(expected_result).to(equal('_'))
+        driver.back()
         try:
-            search_box.send_keys('1')  # type in 1
+            search_box.send_keys('aardvark')
             time.sleep(1)
-            search_box.submit()  # click submit
-            # assert "[('teaspoons', 1)]" in driver.body
-        except AttributeError:
-            print("stuff")
-        except StaleElementReferenceException:
-            print("more stuff")
-        finally:
-            driver.back()
-            try:
-                search_box.send_keys('aardvark')
-                time.sleep(1)
-                search_box.submit()
-            except ValueError:
-                print('Give a number')
+            search_box.submit()
+        except ValueError:
+            pass
 
     def teardown(driver):
         driver.close()
