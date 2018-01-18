@@ -2,43 +2,59 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bellefair">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <html>
-  <head>
-    <link rel="icon" type="image/png" href="/static/favicon.ico">
- <!--supposed to stop the favicon 404 error-->
-    <title> gallons</title>
+
+<head>
+  <link rel="icon" type="image/png" href="/static/favicon.ico">
+  <!--supposed to stop the favicon 404 error-->
+  <title> gallons</title>
   <!--  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
--->  </head>
+-->
+</head>
 
 <style>
+  ul {
+    padding: 2%;
+  }
 
-ul{padding:2%; }
-#hundred        {margin:25%; background:white; color:black;}
-#tenthousand    {margin:25%; background:black; color:white;}
-#one            {margin:25%; background:blue;  color:#ab1323;}
-#everythingelse {margin:5%;  background: white;}
+  #hundred {
+    margin: 25%;
+    background: green;
+    color: black;
+  }
 
+  #tenthousand {
+    margin: 25%;
+    background: black;
+    color: white;
+  }
+
+  #one {
+    margin: 25%;
+    background: blue;
+    color: #ab1323;
+  }
+
+  #everythingelse {
+    margin: 5%;
+    background: white;
+  }
 </style>
 
-  <body style="background-color:#429993">
-      {% for _ in value: %}
-          {% if "[('pints', 1), ('tablespoons', 1), ('teaspoons', 1)]"
-                 in value: %}
-            <ul id="hundred"> <li> {{ value }} </li> </ul>
-                {% break %}
+<body style="background-color:#429993">
+  {% for _ in value: %} {% if "[('pints', 1), ('tablespoons', 1), ('teaspoons', 1)]" in value: %}
+  <ul id="hundred">
+    <li> {{ value }} </li>
+  </ul>
+  {% break %} {% elif "[('gallons', 13), ('fluid ounces', 2), ('tablespoons', 1), ('teaspoons', 1)]" in value: %}
+  <ul id="tenthousand">
+    <li> {{ value }} </li>
+  </ul>
+  {% break %} {% elif "[('teaspoons', 1)]" in value: %}
+  <ul id="one">
+    <li> {{ value }} </li>
+  </ul>
+  {% break %} {% else:%}
+  <h1><ul id="everythingelse"> <li> {{ value }} </li></ul></h1> {% break %} {% endif %} {% endfor %}
+</body>
 
-          {% elif "[('gallons', 13), ('fluid ounces', 2), ('tablespoons', 1), ('teaspoons', 1)]"
-                   in value: %}
-           <ul id="tenthousand">  <li> {{ value }} </li></ul>
-                   {% break %}
-
-          {% elif "[('teaspoons', 1)]"
-            in value: %}
-            <ul id="one" >  <li> {{ value }} </li></ul>
-            {% break %}
-          {% else:%}
-              <h1><ul id="everythingelse"> <li> {{ value }} </li></ul></h1>
-              {% break %}
-          {% endif %}
-      {% endfor %}
-  </body>
 </html>

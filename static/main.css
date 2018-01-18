@@ -8,13 +8,13 @@ body {
 #form {
   margin: 25% 25% 25% 30%;
 }
+
 .form-control {
   border-radius: 5px;
 }
 
 .btn {
-  background-color: #2193b0
-  border: black;
+  background-color: #2193b0 border: black;
   padding: 2%;
   border-radius: 5px;
 }

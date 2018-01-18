@@ -16,9 +16,15 @@ def form():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    result = str(
-        ContainerFiller().calculate(int(request.form['teaspoons'])))
-    return render_template('gallons.html', value=result)
+    try:
+        result = str(
+            ContainerFiller().calculate(int(request.form['teaspoons'])))
+        return render_template('gallons.html', value=result)
+    except ValueError:
+        return render_template('ValueErrorException.html')
+    except Exception as e:
+        return '<html> <p> %s </p> </html>' % e
+
 
 if __name__ == '__main__':
     app.run(debug=True)
