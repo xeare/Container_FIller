@@ -7,11 +7,13 @@ from container_filler import ContainerFiller, WrongInputType
 
 class TestContainers(TestCase):
 
+    def setUp(self):
+        self.sut = ContainerFiller()
+
     # @skip('')
     def test_one_hundred_teaspoons(self):
         # sut = system under test, in this case the containers
-        sut = ContainerFiller()
-        containers = sut.calculate(teaspoons=100)
+        containers = self.sut.calculate(teaspoons=100)
         expect(containers).to(equal(
             (
                 [('pints', 1),
@@ -20,31 +22,26 @@ class TestContainers(TestCase):
 
     # @skip('')
     def test_raises_wrong_input_type_on_str(self):
-        sut = ContainerFiller()
 
         def attempt():
-            sut.calculate(teaspoons=('aardvark'))
+            self.sut.calculate(teaspoons=('aardvark'))
         expect(attempt).to(raise_error(WrongInputType))
 
     # @skip('')
     def test_exception_msg_on_str(self):
-        sut = ContainerFiller()
 
         def attempt():
-            sut.calculate(teaspoons=('aardvark'))
+            self.sut.calculate(teaspoons=('aardvark'))
         expect(attempt).to(raise_error(Exception, 'Please give a number'))
 
     def test_raises_wrong_input_type_on_dict(self):
-        sut = ContainerFiller()
-
         def attempt():
-            sut.calculate(teaspoons=({'spam': 42, 'eggs': 'ximinez'}))
+            self.sut.calculate(teaspoons=({'spam': 42, 'eggs': 'ximinez'}))
         expect(attempt).to(raise_error(WrongInputType))
 
     # @skip('')
     def test_ten_thousand_teaspoons(self):
-        sut = ContainerFiller()
-        containers = sut.calculate(teaspoons=10000)
+        containers = self.sut.calculate(teaspoons=10000)
         expect(containers).to(equal(
             (
                 [('gallons', 13),
@@ -54,16 +51,14 @@ class TestContainers(TestCase):
 
     # @skip('')
     def test_one_teaspoon(self):
-        sut = ContainerFiller()
-        containers = sut.calculate(teaspoons=1)
+        containers = self.sut.calculate(teaspoons=1)
         expect(containers).to(equal(
             (
                 [('teaspoons', 1)])
         ))
 
     def test_twenty_five_thousand_teaspoons(self):
-        sut = ContainerFiller()
-        containers = sut.calculate(teaspoons=25000)
+        containers = self.sut.calculate(teaspoons=25000)
         expect(containers).to(equal(
             (
                 [('barrels', 1),
