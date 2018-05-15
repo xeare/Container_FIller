@@ -1,4 +1,4 @@
-A minor web app that calculates amount of containers(US measuremeants) needed to contain any given number of table spoons of liquid. 
+A trivial web app that calculates amount of containers(US measuremeants) needed to contain any given number of table spoons of liquid. 
 
 # Starting the Server:
 
