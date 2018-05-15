@@ -1,4 +1,4 @@
-A trivial web app that calculates amount of containers(US measuremeants) needed to contain any given number of table spoons of liquid. 
+A trivial web app that calculates the number of containers (US measurements) needed to contain any given amount of teaspoons of liquid. 
 
 # Starting the Server:
 
